@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Tracker App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<script src="jquery.js"></script>
+
+<script>
+
+    function addFood(){
+        var name =$('#name').val();
+        var buy =$('#DoP').val();
+        var bad =$('#DoE').val();
+        var desc =$('#description').val();
+
+
+
+        var unixExpiration = Date.parse(bad);
+        var today = new Date();
+        var unixToday = Date.parse(today);
+
+        if(unixToday > unixExpiration - 259200000){
+            $('#addFoods').append('<tr style="background-color: red"><td>' + name + '</td><td>' + buy + '</td><td> ' + bad + '</td><td>'+ desc + '</td></tr>');
+        }
+        else {
+            $('#addFoods').append('<tr><td>' + name + '</td><td>' + buy + '</td><td> ' + bad + '</td><td>'+ desc +'</td></tr>');
+        }
+    }
+
+
+</script>
+
+<div>
+<form action="index.html" method="post" name="tableAdd">
+    <div id="nameBox">
+        <label for="name">Food Name</label>
+        <input type="text" id="name" name="name"/>
+    </div>
+    <div id="DoPBox">
+        <label for="DoP">Date of Purchase</label>
+        <input type="date" id="DoP" name="buy"/>
+    </div>
+    <div id="DoEBox">
+        <label for="DoE">Expiration Date</label>
+        <input type="date" id="DoE" name="bad"/>
+    </div>
+    <div id="descriptionBox">
+        <label for="description">Description</label>
+        <input type="text" id="description" name="desc"/>
+    </div>
+    <div>
+        <button type="button" name="inputButton" onclick="addFood();">Submit</button>
+    </div>
+</form>
+
+
+</div>
+
+
+<div class="table">
+<table style="width:100%; border: solid black 5px" id="table">
+
+    <tbody id="addFoods">
+    <tr>
+        <th>Name</th>
+        <th>Date of Purchase</th>
+        <th>Expiration Date</th>
+        <th>Description</th>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>
